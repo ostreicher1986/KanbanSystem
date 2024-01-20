@@ -1,0 +1,1 @@
+export const SET_LOADING_FULL = "SET_LOADING_FULL";

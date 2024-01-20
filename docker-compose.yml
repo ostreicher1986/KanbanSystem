@@ -1,0 +1,29 @@
+version: '3'
+services:
+  backend:
+    image: kanban_system_board_back
+    build:
+      context: ./BACK
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      - ASPNETCORE_URLS=http://[::]:5000
+    networks:
+      - kanban_network
+  frontend:
+    image: kanban_system_board_front
+    build:
+      context: ./FRONT
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      - REACT_APP_PORT=3001
+    depends_on:
+      - backend
+    networks:
+      - kanban_network
+networks:
+  kanban_network:
+    driver: bridge
